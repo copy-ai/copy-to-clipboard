@@ -52,10 +52,12 @@ function copy(text, options) {
     // used to preserve spaces and line breaks
     mark.style.whiteSpace = "pre";
     // do not inherit user-select (it may be `none`)
-    mark.style.webkitUserSelect = "text";
-    mark.style.MozUserSelect = "text";
-    mark.style.msUserSelect = "text";
-    mark.style.userSelect = "text";
+    if (options.format === "text/plain") {
+      mark.style.webkitUserSelect = "text";
+      mark.style.MozUserSelect = "text";
+      mark.style.msUserSelect = "text";
+      mark.style.userSelect = "text";
+    }
     mark.addEventListener("copy", function(e) {
       e.stopPropagation();
       if (options.format) {

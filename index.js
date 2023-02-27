@@ -34,7 +34,13 @@ function copy(text, options) {
     selection = document.getSelection();
 
     mark = document.createElement("span");
-    mark.textContent = text;
+
+    if (options.format === "text/html") {
+      mark.innerHTML = text;
+    } else {
+      mark.textContent = text;
+    }
+
     // avoid screen readers from reading out loud the text
     mark.ariaHidden = "true"
     // reset user styles for span element
